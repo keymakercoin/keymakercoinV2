@@ -1,4 +1,4 @@
-Keymaker Core Latest v1.3.17.05
+Keymaker Core 
 ===========================
 
 |CI|master|develop|
