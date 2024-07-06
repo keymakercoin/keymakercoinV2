@@ -1193,10 +1193,9 @@ CAmount GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params&
     int nHeight = nPrevHeight + 1;
          
         
-        if (nHeight == 1) { nSubsidy = 5000;} 
-        else if ((nHeight >= 1) && (nHeight <= 1000)) {nSubsidy = 2;}  
-        else if (nHeight == 1001) { nSubsidy = 9200000;}  // Premine to Exchange to cover legacy keymaker wallets
-        else if ((nHeight > 1001) && (nHeight <= 210240 ))    {nSubsidy = 6000;}   
+        if (nHeight == 1) { nSubsidy = 9200000;} // Premine to Exchange to cover legacy keymaker wallets
+        else if ((nHeight > 1) && (nHeight <= 1000)) {nSubsidy = 5;}        
+        else if ((nHeight > 1000) && (nHeight <= 210240 ))    {nSubsidy = 6000;}   
         else if ((nHeight > 210240) && (nHeight <= 420480)) {nSubsidy = 5941;}    
         else if ((nHeight > 420480) && (nHeight <= 630720)) {nSubsidy = 5882;}
 	    else if ((nHeight > 630720) && (nHeight <= 840960)) {nSubsidy = 5824;}

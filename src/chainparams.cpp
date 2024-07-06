@@ -610,16 +610,15 @@ public:
 
        //  Smartnodes rewards start at block 5762
         consensus.nCollaterals = SmartnodeCollaterals(
-          { {900, 1 * COIN},
-            {1000, 10 * COIN},
-            {5000, 100 * COIN},
-            {10000, 1000 * COIN},         
-            {210240,	600000 * COIN},
-            {420480,	700000 * COIN},
-            {630720,	800000 * COIN},
-            {840960,	900000 * COIN},
-            {1051200,	1000000 * COIN},
-            {1261440,	1200000 * COIN},
+          { {1000, 100 * COIN},
+            {5000, 1000 * COIN},
+            {10000, 5000 * COIN},         
+            {210240, 600000 * COIN},
+            {420480, 700000 * COIN},
+            {630720, 800000 * COIN},
+            {840960, 900000 * COIN},
+            {1051200, 1000000 * COIN},
+            {1261440, 1200000 * COIN},
             {INT_MAX, 1500000 * COIN}
           },
           { {5761, 0}, {INT_MAX, 20} }   
