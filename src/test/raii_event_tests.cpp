@@ -12,7 +12,7 @@
 
 #include <support/events.h>
 
-#include <test/test_raptoreum.h>
+#include <test/test_keymaker.h>
 
 #include <vector>
 

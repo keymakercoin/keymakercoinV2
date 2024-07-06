@@ -14,7 +14,7 @@
 #include <consensus/validation.h>
 #include <key_io.h>
 #include <rpc/server.h>
-#include <test/test_raptoreum.h>
+#include <test/test_keymaker.h>
 #include <validation.h>
 #include <wallet/coincontrol.h>
 #include <wallet/test/wallet_test_fixture.h>
@@ -22,7 +22,7 @@
 #include <boost/test/unit_test.hpp>
 #include <univalue.h>
 
-extern UniValue importmulti(const JSONRPCRequest& request);
+extern UniValue impokeymulti(const JSONRPCRequest& request);
 extern UniValue dumpwallet(const JSONRPCRequest& request);
 extern UniValue importwallet(const JSONRPCRequest& request);
 extern UniValue getnewaddress(const JSONRPCRequest& request);
@@ -72,7 +72,7 @@ BOOST_FIXTURE_TEST_CASE(rescan, TestChain100Setup)
         BOOST_CHECK_EQUAL(wallet.GetImmatureBalance(), 4 * COIN);
     }
 
-    // Verify importmulti RPC returns failure for a key whose creation time is
+    // Verify impokeymulti RPC returns failure for a key whose creation time is
     // before the missing block, and success for a key whose creation time is
     // after.
     {
@@ -98,13 +98,13 @@ BOOST_FIXTURE_TEST_CASE(rescan, TestChain100Setup)
         request.params.setArray();
         request.params.push_back(keys);
 
-        UniValue response = importmulti(request);
+        UniValue response = impokeymulti(request);
         BOOST_CHECK_EQUAL(response.write(),
             strprintf("[{\"success\":false,\"error\":{\"code\":-1,\"message\":\"Rescan failed for key with creation "
                       "timestamp %d. There was an error reading a block from time %d, which is after or within %d "
                       "seconds of key creation, and could contain transactions pertaining to the key. As a result, "
                       "transactions and coins using this key may not appear in the wallet. This error could be caused "
-                      "by pruning or data corruption (see raptoreumd log for details) and could be dealt with by "
+                      "by pruning or data corruption (see keymakerd log for details) and could be dealt with by "
                       "downloading and rescanning the relevant blocks (see -reindex and -rescan "
                       "options).\"}},{\"success\":true}]",
                               0, oldTip->GetBlockTimeMax(), TIMESTAMP_WINDOW));
@@ -547,7 +547,7 @@ BOOST_FIXTURE_TEST_CASE(CreateTransactionTest, CreateTransactionTestSetup)
         }
     };
 
-    // First run the tests with only one input containing 100k ruffs
+    // First run the tests with only one input containing 100k bitting
     {
         coinControl.SetNull();
         coinControl.Select(GetCoins({{100000, false}})[0]);

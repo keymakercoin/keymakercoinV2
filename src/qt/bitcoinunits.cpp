@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2021 The Raptoreum developers
+// Copyright (c) 2020-2021 The Keymaker developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -21,10 +21,10 @@ BitcoinUnits::BitcoinUnits(QObject *parent):
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(RTM);
-    unitlist.append(mRTM);
-    unitlist.append(uRTM);
-    unitlist.append(ruffs);
+    unitlist.append(KEYM);
+    unitlist.append(mKEYM);
+    unitlist.append(uKEYM);
+    unitlist.append(bitting);
     return unitlist;
 }
 
@@ -32,10 +32,10 @@ bool BitcoinUnits::valid(int unit)
 {
     switch(unit)
     {
-    case RTM:
-    case mRTM:
-    case uRTM:
-    case ruffs:
+    case KEYM:
+    case mKEYM:
+    case uKEYM:
+    case bitting:
         return true;
     default:
         return false;
@@ -48,10 +48,10 @@ QString BitcoinUnits::name(int unit)
     {
         switch(unit)
         {
-            case RTM: return QString("RTM");
-            case mRTM: return QString("mRTM");
-            case uRTM: return QString::fromUtf8("μRTM");
-            case ruffs: return QString("ruffs");
+            case KEYM: return QString("KEYM");
+            case mKEYM: return QString("mKEYM");
+            case uKEYM: return QString::fromUtf8("μKEYM");
+            case bitting: return QString("bitting");
             default: return QString("???");
         }
     }
@@ -59,10 +59,10 @@ QString BitcoinUnits::name(int unit)
     {
         switch(unit)
         {
-            case RTM: return QString("tRTM");
-            case mRTM: return QString("mtRTM");
-            case uRTM: return QString::fromUtf8("μtRTM");
-            case ruffs: return QString("truffs");
+            case KEYM: return QString("tKEYM");
+            case mKEYM: return QString("mtKEYM");
+            case uKEYM: return QString::fromUtf8("μtKEYM");
+            case bitting: return QString("tbitting");
             default: return QString("???");
         }
     }
@@ -74,10 +74,10 @@ QString BitcoinUnits::description(int unit)
     {
         switch(unit)
         {
-            case RTM: return QString("Raptoreum");
-            case mRTM: return QString("Milli-Raptoreum (1 / 1" THIN_SP_UTF8 "000)");
-            case uRTM: return QString("Micro-Raptoreum (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case ruffs: return QString("Ten Nano-Raptoreum (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case KEYM: return QString("Keymaker");
+            case mKEYM: return QString("Milli-Keymaker (1 / 1" THIN_SP_UTF8 "000)");
+            case uKEYM: return QString("Micro-Keymaker (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case bitting: return QString("Ten Nano-Keymaker (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -85,10 +85,10 @@ QString BitcoinUnits::description(int unit)
     {
         switch(unit)
         {
-            case RTM: return QString("TestRaptoreums");
-            case mRTM: return QString("Milli-TestRaptoreum (1 / 1" THIN_SP_UTF8 "000)");
-            case uRTM: return QString("Micro-TestRaptoreum (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case ruffs: return QString("Ten Nano-TestRaptoreum (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case KEYM: return QString("TestKeymakers");
+            case mKEYM: return QString("Milli-TestKeymaker (1 / 1" THIN_SP_UTF8 "000)");
+            case uKEYM: return QString("Micro-TestKeymaker (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case bitting: return QString("Ten Nano-TestKeymaker (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -98,10 +98,10 @@ qint64 BitcoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case RTM:  return 100000000;
-    case mRTM: return 100000;
-    case uRTM: return 100;
-    case ruffs: return 1;
+    case KEYM:  return 100000000;
+    case mKEYM: return 100000;
+    case uKEYM: return 100;
+    case bitting: return 1;
     default:   return 100000000;
     }
 }
@@ -110,10 +110,10 @@ int BitcoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case RTM: return 8;
-    case mRTM: return 5;
-    case uRTM: return 2;
-    case ruffs: return 0;
+    case KEYM: return 8;
+    case mKEYM: return 5;
+    case uKEYM: return 2;
+    case bitting: return 0;
     default: return 0;
     }
 }

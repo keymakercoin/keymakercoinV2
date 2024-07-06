@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: raptoreumd.service
-Upstart: raptoreumd.conf
-OpenRC:  raptoreumd.openrc
-         raptoreumd.openrcconf
-CentOS:  raptoreumd.init
-OS X:    org.raptoreum.raptoreumd.plist
+SystemD: keymakerd.service
+Upstart: keymakerd.conf
+OpenRC:  keymakerd.openrc
+         keymakerd.openrcconf
+CentOS:  keymakerd.init
+OS X:    org.keymaker.keymakerd.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

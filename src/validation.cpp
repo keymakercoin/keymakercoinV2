@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2022 The Raptoreum developers
+// Copyright (c) 2020-2022 The Keymaker developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -58,7 +58,7 @@
 #include <boost/thread.hpp>
 
 #if defined(NDEBUG)
-# error "Raptoreum Core cannot be compiled without assertions."
+# error "Keymaker Core cannot be compiled without assertions."
 #endif
 
 #define MICRO 0.000001
@@ -718,7 +718,7 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
         {
             const CTransaction *ptxConflicting = itConflicting->second;
 
-            // Transaction conflicts with mempool and RBF doesn't exist in Raptoreum
+            // Transaction conflicts with mempool and RBF doesn't exist in Keymaker
             return state.Invalid(false, REJECT_DUPLICATE, "txn-mempool-conflict");
         }
     }
@@ -1182,53 +1182,65 @@ NOTE:   unlike bitcoin we are using PREVIOUS block height here,
         might be a good idea to change this to use prev bits
         but current height to avoid confusion.
 */
+ 
 CAmount GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params& consensusParams, bool fSuperblockPartOnly)
 {
     // if (Params().NetworkIDString() == "main") {
     //     std::cout << "This is Testnet only build" << endl;
     //     exit(1);
     // }
-    double nSubsidy = 5000;      // (declaring the reward variable and its original/default amount)
-    const short owlings = 21262; // amount of blocks between 2 owlings
-    int multiplier;              // integer number of owlings
-    int tempHeight;              // number of blocks since last anchor
-    if (nPrevHeight < 720) {
-        nSubsidy = 4;
-    } else if ((nPrevHeight > 553531) && (nPrevHeight < 2105657)) {
-        tempHeight = nPrevHeight - 553532;
-        multiplier = tempHeight / owlings;
-        nSubsidy -= (multiplier * 10 + 10);
-    } else if ((nPrevHeight >= 2105657) && (nPrevHeight < 5273695)) {
-        tempHeight = nPrevHeight - 2105657;
-        multiplier = tempHeight / owlings;
-        nSubsidy -= (multiplier * 20 + 750);
-    } else if ((nPrevHeight >= 5273695) && (nPrevHeight < 7378633)) {
-        tempHeight = nPrevHeight - 5273695;
-        multiplier = tempHeight / owlings;
-        nSubsidy -= (multiplier * 10 + 3720);
-    } else if ((nPrevHeight >= 7378633) && (nPrevHeight < 8399209)) {
-        tempHeight = nPrevHeight - 7378633;
-        multiplier = tempHeight / owlings;
-        nSubsidy -= (multiplier * 5 + 4705);
-    } else if ((nPrevHeight >= 8399209) && (nPrevHeight < 14735285)) {
-        nSubsidy = 55;
-    } else if ((nPrevHeight >= 14735285) && (nPrevHeight < 15798385)) {
-        tempHeight = nPrevHeight - 14735285;
-        multiplier = tempHeight / owlings;
-        nSubsidy -= (multiplier + 4946);
-    } else if ((nPrevHeight >= 15798385) && (nPrevHeight < 25844304)) {
-        nSubsidy = 5;
-    } else if (nPrevHeight >= 25844304) {
-        nSubsidy = 0.001;
-    }
+    double nSubsidy = 1;      // (declaring the reward variable and its original/default amount)
+    int nHeight = nPrevHeight + 1;
+         
+        
+        if (nHeight == 1) { nSubsidy = 5000;} 
+        else if ((nHeight >= 1) && (nHeight <= 1000)) {nSubsidy = 2;}  
+        else if (nHeight == 1001) { nSubsidy = 9200000;}  // Premine to Exchange to cover legacy keymaker wallets
+        else if ((nHeight > 1001) && (nHeight <= 210240 ))    {nSubsidy = 6000;}   
+        else if ((nHeight > 210240) && (nHeight <= 420480)) {nSubsidy = 5941;}    
+        else if ((nHeight > 420480) && (nHeight <= 630720)) {nSubsidy = 5882;}
+	    else if ((nHeight > 630720) && (nHeight <= 840960)) {nSubsidy = 5824;}
+		else if ((nHeight > 840960) && (nHeight <= 1051200)) {nSubsidy = 5766;}
+		else if ((nHeight > 1051200) && (nHeight <= 1261440)) {nSubsidy = 5709;}
+		else if ((nHeight > 1261440) && (nHeight <= 1471680)) {nSubsidy = 5597;}
+        else if ((nHeight > 1471680) && (nHeight <= 1681920)) {nSubsidy = 5487;}	
+	    else if ((nHeight > 1681920) && (nHeight <= 1892160)) {nSubsidy = 5380;}
+		else if ((nHeight > 1892160) && (nHeight <= 2102400)) {nSubsidy = 5274;}
+		else if ((nHeight > 2102400) && (nHeight <= 2312640)) {nSubsidy = 5171;}
+		else if ((nHeight > 2312640) && (nHeight <= 2522880)) {nSubsidy = 4924;}
+   		else if ((nHeight > 2522880) && (nHeight <= 2733120)) {nSubsidy = 4690;}
+        else if ((nHeight > 2733120) && (nHeight <= 2943360)) {nSubsidy = 4467;}
+        else if ((nHeight > 2943360) && (nHeight <= 3153600)) {nSubsidy = 4254;}
+        else if ((nHeight > 3153600) && (nHeight <= 3363840)) {nSubsidy = 4051;}
+        else if ((nHeight > 3363840) && (nHeight <= 3574080)) {nSubsidy = 3683;}
+        else if ((nHeight > 3574080) && (nHeight <= 3784320)) {nSubsidy = 3348;}
+        else if ((nHeight > 3784320) && (nHeight <= 3994560)) {nSubsidy = 3044;}
+        else if ((nHeight > 3994560) && (nHeight <= 4204800)) {nSubsidy = 2767;}
+        else if ((nHeight > 4204800) && (nHeight <= 4415040)) {nSubsidy = 2516;}
+        else if ((nHeight > 4415040) && (nHeight <= 4625280)) {nSubsidy = 1398;}
+        else if ((nHeight > 4625280) && (nHeight <= 4835520)) {nSubsidy = 776;}
+        else if ((nHeight > 4835520) && (nHeight <= 5045760)) {nSubsidy = 431;}
+        else if ((nHeight > 5045760) && (nHeight <= 5256000)) {nSubsidy = 240;}
+        else if ((nHeight > 5256000) && (nHeight <= 5466240)) {nSubsidy = 133;}
+        else if ((nHeight > 5466240) && (nHeight <= 5676480)) {nSubsidy = 70;}
+        else if ((nHeight > 5676480) && (nHeight <= 5886720)) {nSubsidy = 37;}
+        else if ((nHeight > 5886720) && (nHeight <= 6096960)) {nSubsidy = 19;}
+        else if ((nHeight > 6096960) && (nHeight <= 6307200)) {nSubsidy = 10;}
+        else if ((nHeight > 6307200) && (nHeight <= 6517440)) {nSubsidy = 5;} 
+        else if ((nHeight > 6517440) && (nHeight <= 6727680)) {nSubsidy = 3;} 
+        else if (nHeight > 6727680) {nSubsidy =  1;}  // 32 Years
+
+     
     return nSubsidy * COIN;
+
+
 }
 
 CAmount GetSmartnodePayment(int nHeight, CAmount blockValue, CAmount specialTxFees)
 {
     size_t mnCount = chainActive.Tip() == nullptr ? 0 : deterministicMNManager->GetListForBlock(chainActive.Tip()).GetAllMNsCount();
 
-    if (mnCount >= 10 || Params().NetworkIDString().compare("test") == 0) {
+    if (mnCount >= 3 || Params().NetworkIDString().compare("test") == 0) {
         int percentage = Params().GetConsensus().nCollaterals.getRewardPercentage(nHeight);
         CAmount specialFeeReward = specialTxFees * Params().GetConsensus().nFutureRewardShare.smartnode;
         return blockValue * percentage / 100 + specialFeeReward;
@@ -1956,7 +1968,7 @@ static bool WriteTxIndexDataForBlock(const CBlock& block, CValidationState& stat
 static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck() {
-    RenameThread("raptoreum-scriptch");
+    RenameThread("keymaker-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -2066,7 +2078,7 @@ static int64_t nTimeSubsidy = 0;
 static int64_t nTimeValueValid = 0;
 static int64_t nTimePayeeValid = 0;
 static int64_t nTimeProcessSpecial = 0;
-static int64_t nTimeRaptoreumSpecific = 0;
+static int64_t nTimeKeymakerSpecific = 0;
 static int64_t nTimeConnect = 0;
 static int64_t nTimeIndex = 0;
 static int64_t nTimeCallbacks = 0;
@@ -2182,7 +2194,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     int64_t nTime1 = GetTimeMicros(); nTimeCheck += nTime1 - nTimeStart;
     LogPrint(BCLog::BENCHMARK, "    - Sanity checks: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime1 - nTimeStart), nTimeCheck * MICRO, nTimeCheck * MILLI / nBlocksTotal);
 
-    /// RAPTOREUM: Check superblock start
+    /// KEYMAKER: Check superblock start
 
     // make sure old budget is the real one
     if (pindex->nHeight == chainparams.GetConsensus().nSuperblockStartBlock &&
@@ -2191,7 +2203,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
             return state.DoS(100, error("ConnectBlock(): invalid superblock start"),
                              REJECT_INVALID, "bad-sb-start");
 
-    /// END RAPTOREUM
+    /// END KEYMAKER
 
     // Start enforcing BIP68 (sequence locks) and BIP112 (CHECKSEQUENCEVERIFY) using versionbits logic.
     int nLockTimeFlags = 0;
@@ -2227,7 +2239,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
 
     // MUST process special txes before updating UTXO to ensure consistency between mempool and block processing
     if (!ProcessSpecialTxsInBlock(block, pindex, state, view, fJustCheck, fScriptChecks)) {
-        return error("ConnectBlock(RAPTOREUM): ProcessSpecialTxsInBlock for block %s failed with %s",
+        return error("ConnectBlock(KEYMAKER): ProcessSpecialTxsInBlock for block %s failed with %s",
                      pindex->GetBlockHash().ToString(), FormatStateMessage(state));
     }
 
@@ -2412,7 +2424,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     LogPrint(BCLog::BENCHMARK, "    - Verify %u txins: %.2fms (%.3fms/txin) [%.2fs (%.2fms/blk)]\n", nInputs - 1, MILLI * (nTime4 - nTime2), nInputs <= 1 ? 0 : MILLI * (nTime4 - nTime2) / (nInputs-1), nTimeVerify * MICRO, nTimeVerify * MILLI / nBlocksTotal);
 
 
-    // RAPTOREUM
+    // KEYMAKER
 
     // It's possible that we simply don't have enough data and this could fail
     // (i.e. block itself could be a correct one and we need to store it),
@@ -2420,7 +2432,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     // the peer who sent us this block is missing some data and wasn't able
     // to recognize that block is actually invalid.
 
-    // RAPTOREUM : CHECK TRANSACTIONS FOR INSTANTSEND
+    // KEYMAKER : CHECK TRANSACTIONS FOR INSTANTSEND
 
     if (llmq::RejectConflictingBlocks()) {
         // Require other nodes to comply, send them some data in case they are missing it.
@@ -2438,18 +2450,18 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                 // The node which relayed this should switch to correct chain.
                 // TODO: relay instantsend data/proof.
                 LOCK(cs_main);
-                return state.DoS(10, error("ConnectBlock(RAPTOREUM): transaction %s conflicts with transaction lock %s", tx->GetHash().ToString(), conflictLock->txid.ToString()),
+                return state.DoS(10, error("ConnectBlock(KEYMAKER): transaction %s conflicts with transaction lock %s", tx->GetHash().ToString(), conflictLock->txid.ToString()),
                                  REJECT_INVALID, "conflict-tx-lock");
             }
         }
     } else if (!fReindex && !fImporting) {
-        LogPrintf("ConnectBlock(RAPTOREUM): spork is off, skipping transaction locking checks\n");
+        LogPrintf("ConnectBlock(KEYMAKER): spork is off, skipping transaction locking checks\n");
     }
 
     int64_t nTime5_1 = GetTimeMicros(); nTimeISFilter += nTime5_1 - nTime4;
     LogPrint(BCLog::BENCHMARK, "      - IS filter: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5_1 - nTime4), nTimeISFilter * MICRO, nTimeISFilter * MILLI / nBlocksTotal);
 
-    // RAPTOREUM : MODIFIED TO CHECK SMARTNODE PAYMENTS AND SUPERBLOCKS
+    // KEYMAKER : MODIFIED TO CHECK SMARTNODE PAYMENTS AND SUPERBLOCKS
 
     // TODO: resync data (both ways?) and try to reprocess this block later.
     CAmount mintReward = GetBlockSubsidy(pindex->pprev->nBits, pindex->pprev->nHeight, chainparams.GetConsensus());
@@ -2460,24 +2472,24 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     LogPrint(BCLog::BENCHMARK, "      - GetBlockSubsidy: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5_2 - nTime5_1), nTimeSubsidy * MICRO, nTimeSubsidy * MILLI / nBlocksTotal);
 
     if (!IsBlockValueValid(block, pindex->nHeight, (blockReward + specialTxFees), strError)) {
-        return state.DoS(0, error("ConnectBlock(RAPTOREUM): %s", strError), REJECT_INVALID, "bad-cb-amount");
+        return state.DoS(0, error("ConnectBlock(KEYMAKER): %s", strError), REJECT_INVALID, "bad-cb-amount");
     }
 
     int64_t nTime5_3 = GetTimeMicros(); nTimeValueValid += nTime5_3 - nTime5_2;
     LogPrint(BCLog::BENCHMARK, "      - IsBlockValueValid: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5_3 - nTime5_2), nTimeValueValid * MICRO, nTimeValueValid * MILLI / nBlocksTotal);
 
     if (!IsBlockPayeeValid(*block.vtx[0], pindex->nHeight, blockReward, specialTxFees)) {
-        return state.DoS(0, error("ConnectBlock(RAPTOREUM): couldn't find smartnode or superblock payments"),
+        return state.DoS(0, error("ConnectBlock(KEYMAKER): couldn't find smartnode or superblock payments"),
                                 REJECT_INVALID, "bad-cb-payee");
     }
 
     int64_t nTime5_4 = GetTimeMicros(); nTimePayeeValid += nTime5_4 - nTime5_3;
     LogPrint(BCLog::BENCHMARK, "      - IsBlockPayeeValid: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5_4 - nTime5_3), nTimePayeeValid * MICRO, nTimePayeeValid * MILLI / nBlocksTotal);
 
-    int64_t nTime5 = GetTimeMicros(); nTimeRaptoreumSpecific += nTime5 - nTime4;
-    LogPrint(BCLog::BENCHMARK, "    - Raptoreum specific: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5 - nTime4), nTimeRaptoreumSpecific * MICRO, nTimeRaptoreumSpecific * MILLI / nBlocksTotal);
+    int64_t nTime5 = GetTimeMicros(); nTimeKeymakerSpecific += nTime5 - nTime4;
+    LogPrint(BCLog::BENCHMARK, "    - Keymaker specific: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5 - nTime4), nTimeKeymakerSpecific * MICRO, nTimeKeymakerSpecific * MILLI / nBlocksTotal);
 
-    // END RAPTOREUM
+    // END KEYMAKER
 
     if (fJustCheck)
         return true;
@@ -4684,7 +4696,7 @@ bool CChainState::RollforwardBlock(const CBlockIndex* pindex, CCoinsViewCache& i
     // MUST process special txes before updating UTXO to ensure consistency between mempool and block processing
     CValidationState state;
     if (!ProcessSpecialTxsInBlock(block, pindex, state, inputs, false /*fJustCheck*/, false /*fScriptChecks*/)) {
-        return error("RollforwardBlock(RTM): ProcessSpecialTxsInBlock for block %s failed with %s",
+        return error("RollforwardBlock(KEYM): ProcessSpecialTxsInBlock for block %s failed with %s",
             pindex->GetBlockHash().ToString(), FormatStateMessage(state));
     }
 

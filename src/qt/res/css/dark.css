@@ -31,7 +31,7 @@ Loaded in GUIUtil::loadStyleSheet() in guitil.cpp.
 #818181
 #8f330b
 #909090
-#b7410e
+#2D5B9B
 #c7c7c7
 #f6f6f6
 
@@ -79,7 +79,7 @@ QComboBox,
 QPlainTextEdit,
 QLineEdit {
     background-color: #303030;
-    border-color: #b7410e;
+    border-color: #2D5B9B;
     color: #c7c7c7;
 }
 
@@ -100,7 +100,7 @@ QComboBox:focus,
 QPlainTextEdit:focus,
 QLineEdit:focus {
     background-color: #39393b;
-    border-color: #b7410e;
+    border-color: #2D5B9B;
 }
 
 BitcoinAmountField:disabled,
@@ -281,7 +281,7 @@ QHeaderView
 ******************************************************/
 
 QHeaderView::section { /* Table Header Sections */
-    background-color: #b7410e;
+    background-color: #2D5B9B;
     color: #c7c7c7;
 }
 
@@ -350,7 +350,7 @@ QProgressBar {
 }
 
 QProgressBar::chunk {
-    background-color: #b7410e;
+    background-color: #2D5B9B;
 }
 
 /******************************************************
@@ -367,7 +367,7 @@ QPushButton
 ******************************************************/
 
 QPushButton {
-    background-color: #b7410e;
+    background-color: #2D5B9B;
     color: #c7c7c7;
 }
 
@@ -381,7 +381,7 @@ QPushButton:focus {
 }
 
 QPushButton:pressed {
-    background-color: #b7410e;
+    background-color: #2D5B9B;
 }
 
 QPushButton:disabled {
@@ -483,7 +483,7 @@ QPushButton - Special case, tabbar replacement buttons
 /* Sign/Verify dialog buttons */
 #btnSignMessage,
 #btnVerifyMessage {
-    border-color: #b7410e;
+    border-color: #2D5B9B;
     color: #818181;
 }
 
@@ -592,7 +592,7 @@ QSlider
 ******************************************************/
 
 QSlider::handle:horizontal {
-	background-color: #b7410e;
+	background-color: #2D5B9B;
 }
 QSlider::handle:horizontal:hover {
 	background-color: #8f330b;
@@ -663,7 +663,7 @@ QToolBar / QToolButton
 ******************************************************/
 
 QToolBar {
-    background-color: #b7410e;
+    background-color: #2D5B9B;
 }
 
 QToolBar > QToolButton {

@@ -134,7 +134,7 @@ case $1 in
 			| linux-newlib* | linux-musl* | linux-uclibc* | uclinux-uclibc* \
 			| uclinux-gnu* | kfreebsd*-gnu* | knetbsd*-gnu* | netbsd*-gnu* \
 			| netbsd*-eabi* | kopensolaris*-gnu* | cloudabi*-eabi* \
-			| storm-chaos* | os2-emx* | rtmk-nova*)
+			| storm-chaos* | os2-emx* | keymk-nova*)
 				basic_machine=$field1
 				os=$maybe_os
 				;;
@@ -1372,7 +1372,7 @@ case $os in
 	     | openstep* | oskit* | conix* | pw32* | nonstopux* \
 	     | storm-chaos* | tops10* | tenex* | tops20* | its* \
 	     | os2* | vos* | palmos* | uclinux* | nucleus* \
-	     | morphos* | superux* | rtmk* | windiss* \
+	     | morphos* | superux* | keymk* | windiss* \
 	     | powermax* | dnix* | nx6 | nx7 | sei* | dragonfly* \
 	     | skyos* | haiku* | rdos* | toppers* | drops* | es* \
 	     | onefs* | tirtos* | phoenix* | fuchsia* | redox* | bme* \
@@ -1455,7 +1455,7 @@ case $os in
 		os=sysv
 		;;
 	nova*)
-		os=rtmk-nova
+		os=keymk-nova
 		;;
 	ns2)
 		os=nextstep2

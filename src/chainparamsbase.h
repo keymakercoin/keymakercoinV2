@@ -10,8 +10,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between raptoreum-cli and raptoreumd)
- * of a given instance of the Raptoreum system.
+ * CBaseChainParams defines the base parameters (shared between keymaker-cli and keymakerd)
+ * of a given instance of the Keymaker system.
  */
 class CBaseChainParams
 {
