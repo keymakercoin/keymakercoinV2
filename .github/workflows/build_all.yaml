@@ -1,4 +1,4 @@
-name: keymaker Build
+name: keymaker Build All
 on:
   push:
     branches:
