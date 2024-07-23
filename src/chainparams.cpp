@@ -740,7 +740,9 @@ public:
         pchMessageStart[3] = 0x6d; //m
         nDefaultPort = 10229;
         nPruneAfterHeight = 1000;
-        genesis = CreateGenesisBlock(1663169590, 476, 0x20001fff, 4, 5000 * COIN);
+
+        FindMainNetGenesisBlock(1663169590, 0x20001fff, "regtest");
+       // genesis = CreateGenesisBlock(1663169590, 476, 0x20001fff, 4, 5000 * COIN);
         VerifyGenesisPOW(genesis);
 
         consensus.hashGenesisBlock = genesis.GetHash();
