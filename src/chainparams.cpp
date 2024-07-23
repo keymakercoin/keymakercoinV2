@@ -720,6 +720,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
+
         consensus.vDeployments[Consensus::DEPLOYMENT_V17].bit = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_V17].nStartTime = 1643670001; // Feb 01, 2022 00:00:01hrs
         consensus.vDeployments[Consensus::DEPLOYMENT_V17].nTimeout = 1675206001; // Feb 01, 2023 00:00:01hrs
