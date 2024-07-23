@@ -720,7 +720,6 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
-
         consensus.vDeployments[Consensus::DEPLOYMENT_V17].bit = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_V17].nStartTime = 1643670001; // Feb 01, 2022 00:00:01hrs
         consensus.vDeployments[Consensus::DEPLOYMENT_V17].nTimeout = 1675206001; // Feb 01, 2023 00:00:01hrs
@@ -742,8 +741,8 @@ public:
         nDefaultPort = 10229;
         nPruneAfterHeight = 1000;
 
-        FindMainNetGenesisBlock(1663169590, 0x20001fff, "regtest");
-       // genesis = CreateGenesisBlock(1663169590, 476, 0x20001fff, 4, 5000 * COIN);
+ 
+        genesis = CreateGenesisBlock(1663169590, 476, 0x20001fff, 4, 5000 * COIN);
         VerifyGenesisPOW(genesis);
 
         consensus.hashGenesisBlock = genesis.GetHash();
@@ -1037,7 +1036,8 @@ public:
         nDefaultPort = 19899;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1614369600, 2, 0x207fffff, 4, 5000 * COIN);
+        FindMainNetGenesisBlock(1663169590, 0x20001fff, "regtest");
+        //genesis = CreateGenesisBlock(1614369600, 2, 0x207fffff, 4, 5000 * COIN);
         VerifyGenesisPOW(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0xb79e5df07278b9567ada8fc655ffbfa9d3f586dc38da3dd93053686f41caeea0"));
