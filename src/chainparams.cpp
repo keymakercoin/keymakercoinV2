@@ -1036,13 +1036,20 @@ public:
         nDefaultPort = 19899;
         nPruneAfterHeight = 1000;
 
-        FindMainNetGenesisBlock(1663169590, 0x20001fff, "regtest");
-        //genesis = CreateGenesisBlock(1614369600, 2, 0x207fffff, 4, 5000 * COIN);
-        VerifyGenesisPOW(genesis);
+ 
+     //   genesis = CreateGenesisBlock(1614369600, 2, 0x207fffff, 4, 5000 * COIN);
+     //   VerifyGenesisPOW(genesis);
+     //   consensus.hashGenesisBlock = genesis.GetHash();
+     //   assert(consensus.hashGenesisBlock == uint256S("0xb79e5df07278b9567ada8fc655ffbfa9d3f586dc38da3dd93053686f41caeea0"));
+     //   assert(genesis.hashMerkleRoot == uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
+    //    consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8,0.2,0.0);
+
+
+        genesis = CreateGenesisBlock(1667184351, 650, 0x1f00ffff, 4, 5000 * COIN);
+ 
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0xb79e5df07278b9567ada8fc655ffbfa9d3f586dc38da3dd93053686f41caeea0"));
-        assert(genesis.hashMerkleRoot == uint256S("0x87a48bc22468acdd72ee540aab7c086a5bbcddc12b51c6ac925717a74c269453"));
-        consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8,0.2,0.0);
+        assert(consensus.hashGenesisBlock == uint256S("0x5fcce0f1bc672960c40ae71d73e23b47efbcdba3c94008a4848bedbd4c40b44b"));        
+        assert(genesis.hashMerkleRoot == uint256S("0x8d3de61dd5deea3bdc712f40ed948bb570188f6a17a7574c5d7c87b2a5226ea9"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
