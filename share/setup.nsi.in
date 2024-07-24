@@ -37,16 +37,16 @@ SetCompressor /SOLID lzma
 Var StartMenuGroup
 
 # Installer pages
-!insekeymacro MUI_PAGE_WELCOME
-!insekeymacro MUI_PAGE_DIRECTORY
-!insekeymacro MUI_PAGE_STAKEYMENU Application $StartMenuGroup
-!insekeymacro MUI_PAGE_INSTFILES
-!insekeymacro MUI_PAGE_FINISH
-!insekeymacro MUI_UNPAGE_CONFIRM
-!insekeymacro MUI_UNPAGE_INSTFILES
+!insertmacro MUI_PAGE_WELCOME
+!insertmacro MUI_PAGE_DIRECTORY
+!insertmacro MUI_PAGE_STAKEYMENU Application $StartMenuGroup
+!insertmacro MUI_PAGE_INSTFILES
+!insertmacro MUI_PAGE_FINISH
+!insertmacro MUI_UNPAGE_CONFIRM
+!insertmacro MUI_UNPAGE_INSTFILES
 
 # Installer languages
-!insekeymacro MUI_LANGUAGE English
+!insertmacro MUI_LANGUAGE English
 
 # Installer attributes
 OutFile @abs_top_srcdir@/@PACKAGE_TARNAME@-${VERSION}-win@WINDOWS_BITS@-setup.exe
@@ -90,12 +90,12 @@ Section -post SEC0001
     WriteRegStr HKCU "${REGKEY}" Path $INSTDIR
     SetOutPath $INSTDIR
     WriteUninstaller $INSTDIR\uninstall.exe
-    !insekeymacro MUI_STAKEYMENU_WRITE_BEGIN Application
+    !insertmacro MUI_STAKEYMENU_WRITE_BEGIN Application
     CreateDirectory $SMPROGRAMS\$StartMenuGroup
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk" $INSTDIR\@BITCOIN_GUI_NAME@@EXEEXT@
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\@PACKAGE_NAME@ (testnet, @WINDOWS_BITS@-bit).lnk" "$INSTDIR\@BITCOIN_GUI_NAME@@EXEEXT@" "-testnet" "$INSTDIR\@BITCOIN_GUI_NAME@@EXEEXT@" 1
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk" $INSTDIR\uninstall.exe
-    !insekeymacro MUI_STAKEYMENU_WRITE_END
+    !insertmacro MUI_STAKEYMENU_WRITE_END
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayName "$(^Name)"
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayVersion "${VERSION}"
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" Publisher "${COMPANY}"
@@ -115,10 +115,10 @@ SectionEnd
     Push $R0
     ReadRegStr $R0 HKCU "${REGKEY}\Components" "${SECTION_NAME}"
     StrCmp $R0 1 0 next${UNSECTION_ID}
-    !insekeymacro SelectSection "${UNSECTION_ID}"
+    !insertmacro SelectSection "${UNSECTION_ID}"
     GoTo done${UNSECTION_ID}
 next${UNSECTION_ID}:
-    !insekeymacro UnselectSection "${UNSECTION_ID}"
+    !insertmacro UnselectSection "${UNSECTION_ID}"
 done${UNSECTION_ID}:
     Pop $R0
 !macroend
@@ -173,6 +173,6 @@ FunctionEnd
 # Uninstaller functions
 Function un.onInit
     ReadRegStr $INSTDIR HKCU "${REGKEY}" Path
-    !insekeymacro MUI_STAKEYMENU_GETFOLDER Application $StartMenuGroup
-    !insekeymacro SELECT_UNSECTION Main ${UNSEC0000}
+    !insertmacro MUI_STAKEYMENU_GETFOLDER Application $StartMenuGroup
+    !insertmacro SELECT_UNSECTION Main ${UNSEC0000}
 FunctionEnd
