@@ -1,4 +1,4 @@
-Keymaker Core 
+Keymaker Core V2
 ===========================
 
 |CI|master|develop|
