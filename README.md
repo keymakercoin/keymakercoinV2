@@ -1,8 +1,10 @@
-Keymaker Core 
+KeymakerCoin Core V2
 ===========================
 
 |CI|master|develop|
 |-|-|-|
+
+[![keymaker Build](https://github.com/keymakercoin/keymakercoin/actions/workflows/build.yaml/badge.svg?branch=master)](https://github.com/keymakercoin/keymakercoin/actions/workflows/build.yaml)
 
 The name Keymaker is derived from the Victorian term for a bird of prey and ium/eum place for a pertaining to in this case birds of prey. The name comes from the team’s extensive experience in the security field with top level skills covering all aspects of it. This is a unique strength in the crypto community and will leverage well into a successful project.
 
