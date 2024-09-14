@@ -621,8 +621,14 @@ public:
             {1051200, 1000000 * COIN}, // STARTING HEIGHT 840961
             {1261440, 1200000 * COIN}, // STARTING HEIGHT 1051201 
             {INT_MAX, 1500000 * COIN} // STARTING HEIGHT 1261441  
+          },
           { {5761, 0}, {INT_MAX, 20} }   
         );
+
+
+
+
+
 
 
         //FutureRewardShare defaultShare(0.8,0.2,0.0);
