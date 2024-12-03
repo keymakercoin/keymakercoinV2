@@ -21,6 +21,7 @@ cd build_unix/
 sudo apt install g++-mingw-w64-x86-64 -y
 sudo apt-get install bison -y
 sudo apt-get install byacc -y
+sudo apt install libgmp-dev -y
 #sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler -y
 
 sudo update-alternatives --config x86_64-w64-mingw32-g++ # Set the default mingw32 g++ compiler option to posix.
