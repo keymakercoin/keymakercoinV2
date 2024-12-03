@@ -28,6 +28,11 @@ cd ~ && sudo apt-get update && sudo apt-get upgrade -y &&
 # Install the required dependencies
 sudo apt-get install build-essential gcc bsdmainutils libtool autotools-dev libboost-all-dev libssl-dev libevent-dev libprotobuf-dev protobuf-compiler pkg-config python3  git cmake automake unzip net-tools -y &&
 
+git clone https://github.com/Microsoft/vcpkg.git
+cd vcpkg
+./bootstrap-vcpkg.sh
+./vcpkg integrate install
+./vcpkg install immer
  
 
 # port UPnP
