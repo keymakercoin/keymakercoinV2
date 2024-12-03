@@ -26,9 +26,9 @@
 cd ~ && sudo apt-get update && sudo apt-get upgrade -y &&
 
 # Install the required dependencies
-sudo apt-get install build-essential gcc bsdmainutils libtool autotools-dev libboost-all-dev libssl-dev libevent-dev libprotobuf-dev protobuf-compiler pkg-config python3 -y &&
+sudo apt-get install build-essential gcc bsdmainutils libtool autotools-dev libboost-all-dev libssl-dev libevent-dev libprotobuf-dev protobuf-compiler pkg-config python3  git cmake automake unzip net-tools -y &&
 
-sudo apt-get install git cmake automake unzip net-tools -y &&
+ 
 
 # port UPnP
 sudo apt-get install libminiupnpc-dev libzmq3-dev -y &&
