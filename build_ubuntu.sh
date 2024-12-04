@@ -93,7 +93,7 @@ cd $BITCOIN_ROOT
 ./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/" CXXFLAGS="--param ggc-min-expand=1 --param ggc-min-heapsize=32768"
 
 # Example
-#  ./configure --prefix=/home/administrator/keymakerbeta/depends/x86_64-pc-linux-gnu
+#  ./configure  --prefix=/home/administrator/keymakerbeta/depends/x86_64-pc-linux-gnu LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/" CXXFLAGS="--param ggc-min-expand=1 --param ggc-min-heapsize=32768 
 
 
 make
